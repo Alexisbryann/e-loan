@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">e-loan</string>
+    <string name="learn_more">Learn more</string>
+    <string name="sign_up">Sign up</string>
+    <string name="Already_have">Already have an account ?</string>
+    <string name="log_in"><u>Log in</u></string>
+    <string name="logo">E-Loan</string>
+    <string name="motto">Quickest, easiest and friendliest way to get a fast loan on your device!</string>
+    <!-- Strings related to login -->
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+</resources>
