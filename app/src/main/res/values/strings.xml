@@ -23,4 +23,5 @@
     <string name="logo1">Logo1</string>
     <string name="enter_otp">Enter the one time verification pin we sent you</string>
     <string name="verify_otp">VERIFY OTP</string>
+    <string name="information_text1">Please fill in your phone number</string>
 </resources>
