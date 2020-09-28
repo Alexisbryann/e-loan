@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "988161943869",
+    "firebase_url": "https://e-loan-f7919.firebaseio.com",
+    "project_id": "e-loan-f7919",
+    "storage_bucket": "e-loan-f7919.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988161943869:android:37b93b5ad5b4311615fd54",
+        "android_client_info": {
+          "package_name": "com.example.e_loan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "988161943869-qqu0lnj0qu03ritp6ionjuk9242lhmb0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpt8bNdzA3AzR8ESZyMFhxBI8rORUNkBo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "988161943869-qqu0lnj0qu03ritp6ionjuk9242lhmb0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

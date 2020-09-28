@@ -9,10 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.e_loan.ui.login.LoginFragment;
-
-import org.w3c.dom.Text;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -20,19 +16,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView logIn = findViewById(R.id.text_view_log_in);
-        logIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+//        TextView logIn = findViewById(R.id.text_view_log_in);
+//        logIn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+//                startActivity(intent);
+//            }
+//        });
         Button learnMore = findViewById(R.id.button_learn_more);
         learnMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(MainActivity.this,LearnMoreActivity.class);
+                startActivity(intent);
             }
         });
         Button signUp = findViewById(R.id.button_sign_up);
@@ -41,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,SignUp.class);
                 startActivity(intent);
+
             }
         });
     }

@@ -14,4 +14,13 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="enter_number">Enter your phone number</string>
+    <string name="text_view_description">We will send you a text to verify your number</string>
+    <string name="enter_phone">Enter your phone number</string>
+    <string name="text_view_254">+254</string>
+    <string name="button_send_otp">SEND OTP</string>
+    <string name="information_text">You must enter your phone number</string>
+    <string name="logo1">Logo1</string>
+    <string name="enter_otp">Enter the one time verification pin we sent you</string>
+    <string name="verify_otp">VERIFY OTP</string>
 </resources>

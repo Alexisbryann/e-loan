@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorPrimary">#D0001B</color>
     <color name="e_loan">#F44336</color>
     <color name="text">#FFFFFF</color>
+    <color name="button">@color/cardview_dark_background</color>
 </resources>
