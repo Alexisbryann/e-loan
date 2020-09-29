@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.wifi.hotspot2.pps.Credential;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +28,6 @@ public class SignUp extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser mCurrentUser;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
-
 
     private TextView mCountry_extension;
     private EditText mPhoneNumber;
@@ -58,7 +56,7 @@ public class SignUp extends AppCompatActivity {
 
                 String countryExtension = mCountry_extension.getText().toString();
                 String phoneNumber = mPhoneNumber.getText().toString();
-                String completeNumber = countryExtension +""+ phoneNumber;
+                String completeNumber = countryExtension + phoneNumber;
 
                 if (countryExtension.isEmpty() || phoneNumber.isEmpty()){
                     mInformationText.setText(R.string.information_text1);
@@ -82,7 +80,6 @@ public class SignUp extends AppCompatActivity {
             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
                 signInWithPhoneAuthCredential(phoneAuthCredential);
             }
-
             @Override
             public void onVerificationFailed(@NonNull FirebaseException e) {
                 mInformationText.setText(R.string.verification_failed);
@@ -107,7 +104,7 @@ public class SignUp extends AppCompatActivity {
         };
     }
     @Override
-    public void onStart() {
+    protected void onStart() {
         super.onStart();
         if (mCurrentUser != null){
             sendUserToHome();
@@ -136,7 +133,7 @@ public class SignUp extends AppCompatActivity {
                 });
     }
     public void sendUserToHome(){
-        Intent homeIntent = new Intent(SignUp.this,MainActivity2.class);
+        Intent homeIntent = new Intent(SignUp.this, HomeActivity.class);
         homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(homeIntent);

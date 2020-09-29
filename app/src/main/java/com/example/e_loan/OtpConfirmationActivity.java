@@ -2,7 +2,6 @@ package com.example.e_loan;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,6 +37,7 @@ public class OtpConfirmationActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mCurrentUser = mAuth.getCurrentUser();
+        mAuthVerificationId = getIntent().getStringExtra("AuthCredentials");
 
         mOtpVerification = findViewById(R.id.edit_text_enter_otp);
         mVerifyOtp = findViewById(R.id.button_verify_otp);
@@ -53,6 +53,7 @@ public class OtpConfirmationActivity extends AppCompatActivity {
                     mInformation.setVisibility(View.VISIBLE);
                     mInformation.setText(R.string.otp_code);
                 } else{
+                    mProgressBar.setVisibility(View.VISIBLE);
                     PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mAuthVerificationId, Otp);
                     signInWithPhoneAuthCredential(credential);
                 }
@@ -90,7 +91,7 @@ public class OtpConfirmationActivity extends AppCompatActivity {
         }
     }
 public void sendUserToHome(){
-    Intent homeIntent = new Intent(OtpConfirmationActivity.this,MainActivity2.class);
+    Intent homeIntent = new Intent(OtpConfirmationActivity.this, HomeActivity.class);
     homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
     startActivity(homeIntent);
