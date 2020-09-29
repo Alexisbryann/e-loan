@@ -19,6 +19,7 @@
         android:hint="@string/enter_phone"
         android:inputType="phone"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textColorHint="@color/text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.181"
         app:layout_constraintStart_toEndOf="@+id/text_view_254"

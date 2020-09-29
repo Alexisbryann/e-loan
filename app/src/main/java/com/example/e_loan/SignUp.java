@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.wifi.hotspot2.pps.Credential;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,8 +12,12 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -25,8 +30,10 @@ public class SignUp extends AppCompatActivity {
     private FirebaseUser mCurrentUser;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
+
     private TextView mCountry_extension;
     private EditText mPhoneNumber;
+
     private Button mSendOTP;
     private ProgressBar mProgressBar;
     private TextView mInformationText;
@@ -51,7 +58,7 @@ public class SignUp extends AppCompatActivity {
 
                 String countryExtension = mCountry_extension.getText().toString();
                 String phoneNumber = mPhoneNumber.getText().toString();
-                String completeNumber = countryExtension + phoneNumber;
+                String completeNumber = countryExtension +""+ phoneNumber;
 
                 if (countryExtension.isEmpty() || phoneNumber.isEmpty()){
                     mInformationText.setText(R.string.information_text1);
@@ -59,9 +66,10 @@ public class SignUp extends AppCompatActivity {
                 }else {
                     mProgressBar.setVisibility(View.VISIBLE);
                     mSendOTP.setEnabled(false);
+                    mInformationText.setVisibility(View.INVISIBLE);
 
                     PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                            phoneNumber,        // Phone number to verify
+                            completeNumber,        // Phone number to verify
                             60,                 // Timeout duration
                             TimeUnit.SECONDS,   // Unit of timeout
                             SignUp.this,               // Activity (for callback binding)
@@ -72,35 +80,66 @@ public class SignUp extends AppCompatActivity {
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-
+                signInWithPhoneAuthCredential(phoneAuthCredential);
             }
 
             @Override
             public void onVerificationFailed(@NonNull FirebaseException e) {
-
+                mInformationText.setText(R.string.verification_failed);
+                mInformationText.setVisibility(View.VISIBLE);
+                mProgressBar.setVisibility(View.INVISIBLE);
+                mSendOTP.setEnabled(true);
             }
 
             @Override
-            public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+            public void onCodeSent(final String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                 super.onCodeSent(s, forceResendingToken);
-
-                Intent otpIntent = new Intent(SignUp.this,OtpConfirmationActivity.class);
-                startActivity(otpIntent);
-            }
+//                new android.os.Handler().postDelayed(
+//                        new Runnable() {
+//                            public void run() {
+                                Intent otpIntent = new Intent(SignUp.this, OtpConfirmationActivity.class);
+                                otpIntent.putExtra("AuthCredentials", s);
+                                startActivity(otpIntent);
+                            }
+//                        },
+//                        10000);
+//            }
         };
     }
-
     @Override
     public void onStart() {
         super.onStart();
-
         if (mCurrentUser != null){
-            Intent homeIntent = new Intent(SignUp.this,SignUp.class);
-            homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(homeIntent);
-            finish();
+            sendUserToHome();
         }
     }
-
-}
+    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            sendUserToHome();
+                            // Sign in success, update UI with the signed-in user's information
+                            // ...
+                        } else {
+                            // Sign in failed, display a message and update the UI
+                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                                // The verification code entered was invalid
+                                mInformationText.setVisibility(View.VISIBLE);
+                                mInformationText.setText(R.string.otp_verification_failed);
+                            }
+                        }
+                        mSendOTP.setEnabled(true);
+                        mProgressBar.setVisibility(View.INVISIBLE);
+                    }
+                });
+    }
+    public void sendUserToHome(){
+        Intent homeIntent = new Intent(SignUp.this,MainActivity2.class);
+        homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(homeIntent);
+        finish();
+    }
+    }
