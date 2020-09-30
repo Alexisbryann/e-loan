@@ -35,4 +35,9 @@
     <string name="button_pay_fee">Accept terms &amp; pay fee</string>
     <string name="terms_conditions">TERMS AND CONDITIONS</string>
     <string name="logoo">Logoo</string>
+    <string name="img_cancel">Cancel</string>
+    <string name="phone_number">Phone number:</string>
+    <string name="amount">Amount :</string>
+    <string name="text_view_amount">KSH 100 </string>
+    <string name="button_ok">OK</string>>
 </resources>
