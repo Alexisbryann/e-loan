@@ -27,7 +27,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:cardBackgroundColor="@color/skyblue"
             app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="false"
@@ -39,27 +39,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/image_view_cancel"
-                    android:layout_width="93dp"
-                    android:layout_height="69dp"
-                    android:contentDescription="@string/img_cancel"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
-                    app:tint="@color/colorPrimary" />
-
                 <TextView
                     android:id="@+id/text_view_phone_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginTop="100dp"
+                    android:layout_marginTop="35dp"
                     android:text="@string/phone_number"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_send_money" />
 
                 <TextView
                     android:id="@+id/tv_amount"
@@ -88,27 +77,67 @@
                     android:id="@+id/button_OK"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="120dp"
                     android:backgroundTint="@color/chk_lmt_btn"
                     android:text="@string/button_ok"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                     android:textSize="25sp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/text_amount" />
+                    app:layout_constraintTop_toBottomOf="@+id/progressBar5" />
 
                 <EditText
                     android:id="@+id/edt_enter_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="80dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="24dp"
+                    android:autofillHints=""
                     android:ems="10"
                     android:hint="@string/enter_number"
                     android:inputType="phone"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/text_view_phone_number"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:autofillHints="" />
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_send_money" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar5"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="@+id/button_OK"
+                    app:layout_constraintStart_toStartOf="@+id/button_OK"
+                    app:layout_constraintTop_toBottomOf="@+id/text_amount" />
+
+                <TextView
+                    android:id="@+id/text_view_send_money"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center"
+                    android:text="@string/tv_send_money"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_view_error_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textColor="@color/colorPrimary"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toTopOf="@+id/button_OK"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/progressBar5" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </FrameLayout>

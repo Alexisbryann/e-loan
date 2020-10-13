@@ -1,37 +1,22 @@
 package com.example.e_loan;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import com.example.e_loan.Model.AccessToken;
-import com.example.e_loan.Model.STKPush;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import timber.log.Timber;
-
-import static com.example.e_loan.Constants.BUSINESS_SHORT_CODE;
-import static com.example.e_loan.Constants.CALLBACKURL;
-import static com.example.e_loan.Constants.PARTYB;
-import static com.example.e_loan.Constants.PASSKEY;
-import static com.example.e_loan.Constants.TRANSACTION_TYPE;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -51,7 +36,6 @@ public class HomeActivity extends AppCompatActivity {
     private TextView mAmt;
     private ProgressDialog mProgressDialog;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,11 +45,11 @@ public class HomeActivity extends AppCompatActivity {
         mCurrentUser = mAuth.getCurrentUser();
         mApiClient = new DarajaApiClient();
 
-        mCheckLimit = findViewById(R.id.button_check_limit);
         mProgressBar = findViewById(R.id.progressBar3);
         mCongratulations = findViewById(R.id.text_view_congratulations);
         mTermsAndConditions = findViewById(R.id.card_view_terms_and_conditions);
         mPayFee = findViewById(R.id.button_pay_fee);
+        mCheckLimit = findViewById(R.id.button_check_limit);
 
         mCheckLimit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,122 +59,133 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+//        mPayFee.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                launchDialog();
+//            }
+//        });
         mPayFee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchDialog();
+                mPayFee.setEnabled(false);
+                Toast.makeText(getApplicationContext(),"You currently do not qualify for a loan",Toast.LENGTH_LONG).show();
+//                Intent payIntent = new Intent(HomeActivity.this, PayActivity.class);
+//                startActivity(payIntent);
             }
         });
     }
 
-    private void launchDialog() {
+//    private void launchDialog() {
+//
+//        int width = (int)(getResources().getDisplayMetrics().widthPixels);
+//        int height = (int)(getResources().getDisplayMetrics().heightPixels*0.50);
+//
+//
+//            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+//            final AlertDialog alertDialog = alertBuilder.create();
+//            alertDialog.show();
+//            alertDialog.getWindow().setLayout(width,height);
+//            final LayoutInflater inflater = this.getLayoutInflater();
+//            final View alertView = inflater.inflate(R.layout.activity_pay,null);
+//            alertDialog.getWindow().setContentView(alertView);
+//
+//        mOkButton = findViewById(R.id.button_OK);
+//        mCancel = findViewById(R.id.image_view_cancel);
+//        mAmt = findViewById(R.id.text_amount);
+//
+//        mCancel.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    alertDialog.dismiss();
+//                }
+//            });
+//
+//            mOkButton.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+////                    alertDialog.dismiss();
+//                    mEnterPhone = findViewById(R.id.edt_enter_phone);
+//                    String phone_number = mEnterPhone.getText().toString();
+//                    String amount = mAmt.getText().toString();
+//                    performSTKPush(phone_number,amount);
+//                };
+//            });
+//    }
+//    public void getAccessToken() {
+//        mApiClient.setGetAccessToken(true);
+//        mApiClient.mpesaService().getAccessToken().enqueue(new Callback<AccessToken>() {
+//            @Override
+//            public void onResponse(@NonNull Call<AccessToken> call, @NonNull Response<AccessToken> response) {
+//
+//                if (response.isSuccessful()) {
+//                    mApiClient.setAuthToken(response.body().accessToken);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(@NonNull Call<AccessToken> call, @NonNull Throwable t) {
+//
+//            }
+//        });
+//    }
 
-        int width = (int)(getResources().getDisplayMetrics().widthPixels);
-        int height = (int)(getResources().getDisplayMetrics().heightPixels*0.50);
+//    private void processPayment() {
+//
+//        performSTKPush(phone_number,amount);
+//
+//    }
 
+//    private void performSTKPush(String phone_number, String amount) {
+//        mProgressDialog.setMessage("Processing your request");
+//        mProgressDialog.setTitle("Please Wait...");
+//        mProgressDialog.setIndeterminate(true);
+//        mProgressDialog.show();
+//        String timestamp = Utils.getTimestamp();
+//        STKPush stkPush = new STKPush(
+//                BUSINESS_SHORT_CODE,
+//                Utils.getPassword(BUSINESS_SHORT_CODE, PASSKEY, timestamp),
+//                timestamp,
+//                TRANSACTION_TYPE,
+//                String.valueOf(amount),
+//                Utils.sanitizePhoneNumber(phone_number),
+//                PARTYB,
+//                Utils.sanitizePhoneNumber(phone_number),
+//                CALLBACKURL,
+//                "MPESA Android Test", //Account reference
+//                "Testing"  //Transaction description
+//        );
+//
+//        mApiClient.setGetAccessToken(false);
+//
+//        //Sending the data to the Mpesa API, remember to remove the logging when in production.
+//        mApiClient.mpesaService().sendPush(stkPush).enqueue(new Callback<STKPush>() {
+//            @Override
+//            public void onResponse(@NonNull Call<STKPush> call, @NonNull Response<STKPush> response) {
+//                mProgressDialog.dismiss();
+//                try {
+//                    if (response.isSuccessful()) {
+//                        Timber.d("post submitted to API. %s", response.body());
+//                    } else {
+//                        Timber.e("Response %s", response.errorBody().string());
+//                    }
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(@NonNull Call<STKPush> call, @NonNull Throwable t) {
+//                mProgressDialog.dismiss();
+//                Timber.e(t);
+//            }
+//        });
+//    }
 
-            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
-            final AlertDialog alertDialog = alertBuilder.create();
-            alertDialog.show();
-            alertDialog.getWindow().setLayout(width,height);
-            final LayoutInflater inflater = this.getLayoutInflater();
-            final View alertView = inflater.inflate(R.layout.activity_pay,null);
-            alertDialog.getWindow().setContentView(alertView);
-            mOkButton = alertView.findViewById(R.id.button_OK);
-            mCancel = alertView.findViewById(R.id.image_view_cancel);
-            mEnterPhone = findViewById(R.id.edt_enter_phone);
-            mAmt = findViewById(R.id.text_amount);
-
-            mCancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    alertDialog.dismiss();
-                }
-            });
-
-            mOkButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    alertDialog.dismiss();
-                    processPayment();
-                };
-            });
-    }
-    public void getAccessToken() {
-        mApiClient.setGetAccessToken(true);
-        mApiClient.mpesaService().getAccessToken().enqueue(new Callback<AccessToken>() {
-            @Override
-            public void onResponse(@NonNull Call<AccessToken> call, @NonNull Response<AccessToken> response) {
-
-                if (response.isSuccessful()) {
-                    mApiClient.setAuthToken(response.body().accessToken);
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<AccessToken> call, @NonNull Throwable t) {
-
-            }
-        });
-    }
-
-    private void processPayment() {
-        String phone_number = mEnterPhone.getText().toString();
-        String amount = mAmt.getText().toString();
-        performSTKPush(phone_number,amount);
-
-    }
-
-    private void performSTKPush(String phone_number, String amount) {
-        mProgressDialog.setMessage("Processing your request");
-        mProgressDialog.setTitle("Please Wait...");
-        mProgressDialog.setIndeterminate(true);
-        mProgressDialog.show();
-        String timestamp = Utils.getTimestamp();
-        STKPush stkPush = new STKPush(
-                BUSINESS_SHORT_CODE,
-                Utils.getPassword(BUSINESS_SHORT_CODE, PASSKEY, timestamp),
-                timestamp,
-                TRANSACTION_TYPE,
-                String.valueOf(amount),
-                Utils.sanitizePhoneNumber(phone_number),
-                PARTYB,
-                Utils.sanitizePhoneNumber(phone_number),
-                CALLBACKURL,
-                "MPESA Android Test", //Account reference
-                "Testing"  //Transaction description
-        );
-
-        mApiClient.setGetAccessToken(false);
-
-        //Sending the data to the Mpesa API, remember to remove the logging when in production.
-        mApiClient.mpesaService().sendPush(stkPush).enqueue(new Callback<STKPush>() {
-            @Override
-            public void onResponse(@NonNull Call<STKPush> call, @NonNull Response<STKPush> response) {
-                mProgressDialog.dismiss();
-                try {
-                    if (response.isSuccessful()) {
-                        Timber.d("post submitted to API. %s", response.body());
-                    } else {
-                        Timber.e("Response %s", response.errorBody().string());
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<STKPush> call, @NonNull Throwable t) {
-                mProgressDialog.dismiss();
-                Timber.e(t);
-            }
-        });
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
+//    @Override
+//    public void onPointerCaptureChanged(boolean hasCapture) {
+//
+//    }
 
     private void setProgressValue(final int progress) {
         // set the progress

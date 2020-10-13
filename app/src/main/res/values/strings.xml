@@ -29,7 +29,7 @@
     <string name="verification_failed">Verification Failed, please try again.</string>
     <string name="hello">HELLO AND WELCOME TO E-LOAN</string>
     <string name="welcome1">Welcome to Easy loan. Our mobile loans are quick, easy to apply and do not accrue interest like other mobile loans in the market. Proceed to check your loan limit and borrow an unsecured loan within 5 minutes straight to your M-PESA !</string>
-    <string name="text_view_congratulations">Congratulations, you qualify for an initial loan of 2,000 kes !</string>
+    <string name="text_view_congratulations">Sorry, you do not qualify for a loan at this time. However, you should not lose hope, check back again after one month</string>
     <string name="button_check_limit">check your limit</string>
     <string name="text_view_conditions">To borrow your first loan, you are required to pay a processing fee of 100 kes.This fee will settle your interest, therefore, your loan will not attract any interest. You will pay back the exact amount loaned out to you. Isn\'t that awesome?</string>
     <string name="button_pay_fee">Accept terms &amp; pay fee</string>
@@ -39,5 +39,10 @@
     <string name="phone_number">Phone number:</string>
     <string name="amount">Amount :</string>
     <string name="text_view_amount">KSH 100 </string>
-    <string name="button_ok">OK</string>>
+    <string name="button_ok">OK</string>
+    <string name="tv_send_money">Enter your phone number then click the OK button. This will send you an STK push notification from M-PESA. Enter your details and confirm the transaction to complete your registration.</string>
+    <string name="error">An error occurred, please try again</string>
+    <string name="succcess">Successfully sent!</string>
+
+    >
 </resources>

@@ -115,7 +115,7 @@
                         android:layout_marginEnd="8dp"
                         android:gravity="center"
                         android:text="@string/text_view_congratulations"
-                        android:textColor="@color/chk_lmt_btn"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="15sp"
                         android:visibility="invisible"
                         app:layout_constraintEnd_toEndOf="parent"
