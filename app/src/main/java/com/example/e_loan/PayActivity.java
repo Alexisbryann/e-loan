@@ -120,7 +120,7 @@ public class PayActivity extends AppCompatActivity {
                 try {
                     if (response.isSuccessful()) {
                         mError.setVisibility(View.VISIBLE);
-                        mError.setText(R.string.succcess);
+                        mError.setText(R.string.success);
                         Timber.d("post submitted to API. %s", response.body());
                     } else {
                         mError.setVisibility(View.VISIBLE);

@@ -15,6 +15,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -35,6 +40,7 @@ public class HomeActivity extends AppCompatActivity {
     private EditText mEnterPhone;
     private TextView mAmt;
     private ProgressDialog mProgressDialog;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +56,22 @@ public class HomeActivity extends AppCompatActivity {
         mTermsAndConditions = findViewById(R.id.card_view_terms_and_conditions);
         mPayFee = findViewById(R.id.button_pay_fee);
         mCheckLimit = findViewById(R.id.button_check_limit);
+//        admob
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         mCheckLimit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mCongratulations.setVisibility(View.INVISIBLE);
+                mTermsAndConditions.setVisibility(View.INVISIBLE);
                 mProgressBar.setVisibility(View.VISIBLE);
                 setProgressValue(progress);
             }
@@ -68,7 +86,7 @@ public class HomeActivity extends AppCompatActivity {
         mPayFee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPayFee.setEnabled(false);
+//                mPayFee.setEnabled(false);
                 Toast.makeText(getApplicationContext(),"You currently do not qualify for a loan",Toast.LENGTH_LONG).show();
 //                Intent payIntent = new Intent(HomeActivity.this, PayActivity.class);
 //                startActivity(payIntent);
@@ -199,7 +217,6 @@ public class HomeActivity extends AppCompatActivity {
                         if (progress == 30) {
                             mCongratulations.setVisibility(View.VISIBLE);
                             mTermsAndConditions.setVisibility(View.VISIBLE);
-
                         }
                     }
                 });
