@@ -56,8 +56,8 @@ public class HomeActivity extends AppCompatActivity {
         mTermsAndConditions = findViewById(R.id.card_view_terms_and_conditions);
         mPayFee = findViewById(R.id.button_pay_fee);
         mCheckLimit = findViewById(R.id.button_check_limit);
-//        admob
 
+//        admob
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
