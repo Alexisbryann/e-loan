@@ -1,42 +1,66 @@
 {
   "project_info": {
-    "project_number": "988161943869",
-    "firebase_url": "https://e-loan-f7919.firebaseio.com",
-    "project_id": "e-loan-f7919",
-    "storage_bucket": "e-loan-f7919.appspot.com"
+    "project_number": "122260711857",
+    "firebase_url": "https://e-loan-a8659.firebaseio.com",
+    "project_id": "e-loan-a8659",
+    "storage_bucket": "e-loan-a8659.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:988161943869:android:37b93b5ad5b4311615fd54",
+        "mobilesdk_app_id": "1:122260711857:android:285973e1e9d2475c76f590",
         "android_client_info": {
-          "package_name": "com.example.e_loan"
+          "package_name": "com.alexis.e_loan"
         }
       },
       "oauth_client": [
         {
-          "client_id": "988161943869-p8dge4q102tfuusmukd3o66152jipubr.apps.googleusercontent.com",
+          "client_id": "122260711857-843snae02cutoivbmsvv6bn9nt4ilcfe.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.e_loan",
+            "package_name": "com.alexis.e_loan",
+            "certificate_hash": "27a18347c6178bff410807d5c5de746c58ca9d1f"
+          }
+        },
+        {
+          "client_id": "122260711857-i3ab7mtc52elie0t9buk54makhkh1577.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alexis.e_loan",
+            "certificate_hash": "9f0dfb032658591da1e6383d69f3da1fb03cbf96"
+          }
+        },
+        {
+          "client_id": "122260711857-qf7a2uk945g4b4u3cjv5kn650lg2d3rf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alexis.e_loan",
+            "certificate_hash": "d4f184b50c368f363208f13fba3c9bb6bb0c7459"
+          }
+        },
+        {
+          "client_id": "122260711857-2b0b61t63i8c9cu4gk9vmjgbfdt4hnji.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alexis.e_loan",
             "certificate_hash": "8151924871e64eae42c2d69c037a507728af2258"
           }
         },
         {
-          "client_id": "988161943869-qqu0lnj0qu03ritp6ionjuk9242lhmb0.apps.googleusercontent.com",
+          "client_id": "122260711857-vvo62gnn60debi0mc50dedgseht8bpsl.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCpt8bNdzA3AzR8ESZyMFhxBI8rORUNkBo"
+          "current_key": "AIzaSyBldRbarUIL-2Uj1ATKFrnVDWPhhJLZalU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "988161943869-qqu0lnj0qu03ritp6ionjuk9242lhmb0.apps.googleusercontent.com",
+              "client_id": "122260711857-vvo62gnn60debi0mc50dedgseht8bpsl.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

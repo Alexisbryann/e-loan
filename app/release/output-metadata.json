@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.example.e_loan",
+  "applicationId": "com.alexis.e_loan",
   "variantName": "release",
   "elements": [
     {

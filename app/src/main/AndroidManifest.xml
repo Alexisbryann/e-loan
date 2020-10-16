@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.e_loan">
+    package="com.alexis.e_loan">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -18,14 +18,14 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-8199773971116374~1310145882"/>
-        <activity android:name=".PayActivity" />
-        <activity android:name=".HomeActivity" />
+        <activity android:name="com.alexis.e_loan.PayActivity" />
+        <activity android:name="com.alexis.e_loan.HomeActivity" />
         <activity
-            android:name=".LearnMoreActivity"
-            android:parentActivityName=".MainActivity"
+            android:name="com.alexis.e_loan.LearnMoreActivity"
+            android:parentActivityName="com.alexis.e_loan.MainActivity"
             android:theme="@style/Theme.AppCompat" />
         <activity
-            android:name=".SignUp"
+            android:name="com.alexis.e_loan.SignUp"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateVisible">
             <intent-filter>
@@ -34,8 +34,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".OtpConfirmationActivity" />
+        <activity android:name="com.alexis.e_loan.MainActivity" />
+        <activity android:name="com.alexis.e_loan.OtpConfirmationActivity" />
 
     </application>
 
